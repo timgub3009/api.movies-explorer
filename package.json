@@ -1,5 +1,5 @@
 {
-  "name": "movies-explorer-api",
+  "name": "api.movies-explorer",
   "version": "1.0.0",
   "description": "diploma-backend",
   "main": "app.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timgub3009/movies-explorer-api.git"
+    "url": "git+https://github.com/timgub3009/api.movies-explorer.git"
   },
   "author": "timgub3009",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/timgub3009/movies-explorer-api/issues"
+    "url": "https://github.com/timgub3009/api.movies-explorer/issues"
   },
-  "homepage": "https://github.com/timgub3009/movies-explorer-api#readme",
+  "homepage": "https://github.com/timgub3009/api.movies-explorer#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "celebrate": "^15.0.1",
