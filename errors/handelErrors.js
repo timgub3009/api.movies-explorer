@@ -3,7 +3,10 @@ const {
   BAD_REQUEST_ERROR_CODE,
   SERVER_ERROR_CODE,
   CONFLICT_ERROR_CODE,
-} = require('../utils/config');
+  INCORRECT_DATA_MESSAGE,
+  CONFLICT_ERROR_MESSAGE,
+  SERVER_ERROR_MESSAGE,
+} = require('../utils/constants');
 const NotFoundError = require('./NotFoundError');
 const ForbiddenError = require('./ForbiddenError');
 const UnauthorizedError = require('./UnauthorizedError');
@@ -12,7 +15,7 @@ module.exports = (err, req, res, next) => {
   if (err instanceof CastError || err instanceof ValidationError) {
     return res
       .status(BAD_REQUEST_ERROR_CODE)
-      .send({ message: 'Переданы некорректные данные' });
+      .send({ message: INCORRECT_DATA_MESSAGE });
   }
 
   if (
@@ -25,13 +28,13 @@ module.exports = (err, req, res, next) => {
 
   if (err.code === 11000) {
     return res.status(CONFLICT_ERROR_CODE).send({
-      message: 'Пользователь с таким почтовым адресом уже зарегистрирован',
+      message: CONFLICT_ERROR_MESSAGE,
     });
   }
 
   res
     .status(SERVER_ERROR_CODE)
-    .send({ message: 'На сервере произошла ошибка' });
+    .send({ message: SERVER_ERROR_MESSAGE });
 
   return next();
 };

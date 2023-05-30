@@ -1,5 +1,5 @@
 const Movie = require('../models/movie');
-const { CREATED_CODE } = require('../utils/config');
+const { CREATED_CODE, INCORRECT_MOVIEID_MESSAGE, MOVIE_REMOVAL_DENIED_MESSAGE } = require('../utils/constants');
 const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
@@ -53,11 +53,11 @@ const deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
   Movie.findById(movieId)
     .orFail(() => {
-      throw new NotFoundError('Нет фильма по указанному id');
+      throw new NotFoundError(INCORRECT_MOVIEID_MESSAGE);
     })
     .then((movie) => {
       if (!movie.owner.equals(req.user._id)) {
-        throw new ForbiddenError('Нельзя удалить чужой фильм');
+        throw new ForbiddenError(MOVIE_REMOVAL_DENIED_MESSAGE);
       } else {
         return Movie.deleteOne(movie).then(() => res.send(movie));
       }

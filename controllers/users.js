@@ -5,14 +5,21 @@ const User = require('../models/user');
 
 const NotFoundError = require('../errors/NotFoundError');
 
-const { NODE_ENV, JWT_SECRET_KEY, CREATED_CODE } = require('../utils/config');
+const {
+  NODE_ENV,
+  JWT_SECRET_KEY,
+  CREATED_CODE,
+  INCORRECT_USERID_MESSAGE,
+  SUCCESSFUL_LOGIN_MESSAGE,
+  SUCCESSFUL_LOGOUT_MESSAGE,
+} = require('../utils/constants');
 
 const getUser = (req, res, next) => {
   const data = req.user._id;
 
   User.findById(data)
     .orFail(() => {
-      throw new NotFoundError('Пользователь не найден');
+      throw new NotFoundError(INCORRECT_USERID_MESSAGE);
     })
     .then((user) => {
       res.send(user);
@@ -26,7 +33,7 @@ const updateUser = (req, res, next) => {
 
   User.findByIdAndUpdate(userId, data, { new: true, runValidators: true })
     .orFail(() => {
-      throw new NotFoundError('Пользователь не найден');
+      throw new NotFoundError(INCORRECT_USERID_MESSAGE);
     })
     .then((user) => {
       res.send(user);
@@ -68,7 +75,7 @@ const logIn = (req, res, next) => {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
         })
-        .send({ message: 'Аутентификация успешна!' });
+        .send({ message: SUCCESSFUL_LOGIN_MESSAGE });
     })
     .catch(next);
 };
@@ -79,7 +86,7 @@ const logOut = (req, res) => {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
     })
-    .send({ message: 'Вы вышли из профиля' });
+    .send({ message: SUCCESSFUL_LOGOUT_MESSAGE });
 };
 
 module.exports = {
