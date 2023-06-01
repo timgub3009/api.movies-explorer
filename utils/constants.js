@@ -16,6 +16,7 @@ const SUCCESSFUL_LOGIN_MESSAGE = 'Аутентификация успешна!';
 const SUCCESSFUL_LOGOUT_MESSAGE = 'Вы вышли из профиля';
 const NOT_FOUND_ERROR_MESSAGE = 'Запрашиваемый ресурс не найден';
 const UNAUTHORIZED_ERROR_MESSAGE = 'Необходима авторизация';
+const INCORRECT_INPUT_VALUES_MESSAGE = 'Неправильные почта или пароль';
 
 const regex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_[\]+.~#?&[\]/=]*)$/;
 
@@ -38,4 +39,5 @@ module.exports = {
   SUCCESSFUL_LOGOUT_MESSAGE,
   NOT_FOUND_ERROR_MESSAGE,
   UNAUTHORIZED_ERROR_MESSAGE,
+  INCORRECT_INPUT_VALUES_MESSAGE,
 };
