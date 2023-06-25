@@ -17,9 +17,10 @@
 
 ## Ссылки на проект
 
-IP 51.250.71.250;
+IP 158.160.99.62;
 
 Backend https://api.timur.nomoredomains.rocks/;
+Frontend https://timur.nomoredomains.rocks/;
 
 ## Используемые технологии
 библиотека Express, Node.js, MongoDB.

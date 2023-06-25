@@ -70,12 +70,15 @@ const logIn = (req, res, next) => {
           expiresIn: '7d',
         },
       );
-      res
-        .cookie('jwt', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-        })
-        .send({ message: SUCCESSFUL_LOGIN_MESSAGE });
+
+      res.send({ jwt: token, message: SUCCESSFUL_LOGIN_MESSAGE });
+
+      // res
+      //   .cookie('jwt', token, {
+      //     maxAge: 3600000 * 24 * 7,
+      //     httpOnly: true,
+      //   })
+      //   .send({ message: SUCCESSFUL_LOGIN_MESSAGE });
     })
     .catch(next);
 };
